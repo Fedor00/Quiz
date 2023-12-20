@@ -1,5 +1,6 @@
 
 
+using System.Text.Json.Serialization;
 using API.Controllers.Interfaces;
 using API.Controllers.Repositories;
 using ChatMicroservice.Data;
@@ -14,7 +15,8 @@ namespace API.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
            
-           
+           services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             services.AddControllers();
           
             services.AddScoped<IQuestionRepository, QuestionRepository>();

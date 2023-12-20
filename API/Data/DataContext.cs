@@ -1,6 +1,7 @@
 
 
 using API.Controllers.Entities;
+using API.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChatMicroservice.Data
@@ -13,6 +14,7 @@ namespace ChatMicroservice.Data
 
         public DbSet<Question> Questions { get; set; }
         public DbSet<Choice> Choices { get; set; }
+        public DbSet<Answer> Answers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Question>()
@@ -20,11 +22,10 @@ namespace ChatMicroservice.Data
                 .WithOne(u => u.Question)
                 .HasForeignKey(m => m.QuestionId);
 
-            modelBuilder.Entity<Question>()
-                .HasOne(q => q.CorrectAnswer)
-                .WithOne()
-                .HasForeignKey<Question>(q => q.CorrectAnswerId);
-
+           modelBuilder.Entity<Answer>()
+            .HasOne(e => e.Question)
+            .WithOne(e => e.Answer)
+            .HasForeignKey<Answer>(e => e.QuestionId);
 
         }
 

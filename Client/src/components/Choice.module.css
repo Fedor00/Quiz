@@ -1,0 +1,12 @@
+.choice {
+  text-align: center;
+  margin: 3px;
+  cursor: pointer;
+}
+.choice:hover {
+  background-color: #383030 !important;
+}
+
+.choice-selected {
+  background-color: #383030 !important;
+}
