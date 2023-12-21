@@ -22,7 +22,11 @@ function Quiz() {
   function isChoiceCorect(choiceSelected) {
     return choiceSelected?.text == question?.answer?.correctChoice?.text;
   }
-
+  function onRetake() {
+    setShowScore(false);
+    setScore(0);
+    setQuestionIndex(0);
+  }
   useEffect(() => {
     const getQuestions = async () => {
       try {
@@ -45,6 +49,8 @@ function Quiz() {
         question={question}
         score={score}
         showScore={showScore}
+        questionIndex={questionIndex}
+        retakeQuiz={onRetake}
       />
     </Container>
   );
